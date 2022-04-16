@@ -2,6 +2,7 @@
 # coding: utf-8
 
 from selenium import webdriver
+from selenium.common.exceptions import TimeoutException
 from lxml import html
 from bs4 import BeautifulSoup
 import os,requests,time
@@ -32,19 +33,28 @@ print(start_msg)
 try:
     while True:
         browser = webdriver.Chrome(executable_path = 'D:\\Python\\lib\\chromedriver\\100\\chromedriver.exe')
-        time.sleep(10)
-        browser.get(url)
-        time.sleep(10)
-        html_s = BeautifulSoup(browser.page_source, 'html.parser')
         
-        
-        lxml_coverted_data = html.fromstring(
-            str(
-                BeautifulSoup(browser.page_source, 'html.parser')
+        try:
+            time.sleep(10)
+            browser.get(url)
+            time.sleep(10)
+            html_s = BeautifulSoup(browser.page_source, 'html.parser')
+
+
+            lxml_coverted_data = html.fromstring(
+                str(
+                    BeautifulSoup(browser.page_source, 'html.parser')
+                )
             )
-        )
+        except TimeoutException as e:
+            print(e)
+            payload = {'message': f'{e}'}
+            r = requests.post(notify_url, headers=headers, params=payload)
+            time.sleep(CHECK_INTERVAL_SEC * 2)
+            continue
         
-        browser.quit()
+        finally:
+            browser.quit()
 
         data1 = lxml_coverted_data.xpath(xpath_data1)   
 
