@@ -11,13 +11,14 @@ import os,requests,time
 
 CHECK_INTERVAL_SEC = 60 * 5
 
-url = 'https://reserve.tokyodisneyresort.jp/restaurant/calendar/?useDate=20220515&searchUseDate=20220515&adultNum=2&searchAdultNum=2&childNum=2&searchChildNum=2&stretcherCount=0&searchStretcherCount=0&wheelchairCount=0&searchWheelchairCount=0&nameCd=RBBY0&searchNameCd=RBBY0&contentsCd=04&childAgeInform=06U%7C04%7C&searchChildAgeInform=06U%7C04%7C&mealDivList=3&searchMealDivList=3&searchKeyword=&reservationStatus=0'
+# url = 'https://reserve.tokyodisneyresort.jp/restaurant/calendar/?useDate=20220515&searchUseDate=20220515&adultNum=2&searchAdultNum=2&childNum=2&searchChildNum=2&stretcherCount=0&searchStretcherCount=0&wheelchairCount=0&searchWheelchairCount=0&nameCd=RBBY0&searchNameCd=RBBY0&contentsCd=04&childAgeInform=06U%7C04%7C&searchChildAgeInform=06U%7C04%7C&mealDivList=3&searchMealDivList=3&searchKeyword=&reservationStatus=0'
+
+url = 'https://reserve.tokyodisneyresort.jp/restaurant/calendar/?searchUseDate=20220515&searchAdultNum=2&searchChildNum=2&searchChildAgeInform=04%7C06U%7C&searchWheelchairCount=0&searchStretcherCount=0&searchNameCd=RBBY0&searchKeyword=&reservationStatus=0&nameCd=RBBY0&contentsCd=04&useDate=20220515&mealDivList=3&adultNum=2&childNum=2&childAgeInform=04%7C06U%7C&wheelchairCount=0&stretcherCount=0'
 
 # Test URL
 # url = 'https://reserve.tokyodisneyresort.jp/restaurant/calendar/?useDate=20220513&searchUseDate=20220513&adultNum=2&searchAdultNum=2&childNum=2&searchChildNum=2&stretcherCount=0&searchStretcherCount=0&wheelchairCount=0&searchWheelchairCount=0&nameCd=RBPP0&searchNameCd=RBPP0&contentsCd=04&childAgeInform=06U%7C04%7C&searchChildAgeInform=06U%7C04%7C&mealDivList=3&searchMealDivList=3&searchKeyword=&reservationStatus=1'
 
 xpath_data1 = '/html/body/div[2]/div[1]/div[3]/div[2]/div[2]/div/div/ul[1]/li'
-
 
 # LINE Notify 準備
 notify_url = "https://notify-api.line.me/api/notify"
